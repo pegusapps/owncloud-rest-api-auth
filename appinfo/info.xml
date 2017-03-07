@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<info>
+	<id>rest_auth_app</id>
+	<name>REST Authentication App</name>
+	<description></description>
+	<version>0.0.1</version>
+	<licence></licence>
+	<author></author>
+	<types>
+		<authentication/>
+	</types>
+	<dependencies>
+		<owncloud min-version="9"/>
+	</dependencies>
+</info>
