@@ -3,7 +3,7 @@
 	<id>rest_auth_app</id>
 	<name>REST Authentication App</name>
 	<description></description>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<licence></licence>
 	<author></author>
 	<types>
