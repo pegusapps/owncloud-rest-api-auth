@@ -1,0 +1,33 @@
+version: '3.1'
+
+volumes:
+  mysqldata:
+    driver: local
+
+services:
+
+  owncloud:
+      image: owncloud:10
+      ports:
+          - "8080:80"
+      volumes:
+          - .:/var/www/html/apps/rest_auth_app
+
+  mysql:
+      image: mysql:latest
+      volumes:
+          - mysqldata:/var/lib/mysql
+      environment:
+          MYSQL_ROOT_PASSWORD: secret
+          MYSQL_DATABASE: owncloud
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: admin
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      ports:
+          - "8081:80"
+      depends_on:
+          - mysql
+      environment:
+          PMA_HOST: mysql
