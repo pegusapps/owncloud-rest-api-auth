@@ -1,2 +1,36 @@
-# OwnCloud REST Authentication App
+= OwnCloud REST Authentication App
 
+== Dockerized development environment setup
+
+=== Start environment
+
+Open a terminal in the directory of the `docker-compose.yml` file and run
+
+[source]
+----
+docker-compose up -d
+----
+
+Start the owncloud setup on http://localhost:8080
+
+[NOTE]
+.First time use
+====
+The first time, you will need to setup the admin user and the connection
+to the database. Make sure to target the `mysql` service, and use `owncloud`
+as the dabase name.
+Use the following database user credentials: `admin` / `admin`
+====
+
+=== Stop environment
+
+[source]
+----
+docker-compose stop
+----
+
+=== Services
+
+* Owncloud (available at http://localhost:8080)
+* MySQL
+* PHPMyAdmin (available at http://localhost:8081)
