@@ -1,29 +1,20 @@
 <?xml version="1.0"?>
 <info>
-    <id>rest_auth_app</id>
-    <name>REST Authentication App</name>
-    <description>KNX REST Authentication</description>
-    <version>0.0.4</version>
-    <namespace>rest_auth_app</namespace>
-    <licence>AGPL 3</licence>
-    <summary>KNX REST Authentication</summary>
-
-    <types>
-        <authentication/>
-    </types>
-
-    <documentation>
-        <user>https://github.com/pegusapps/owncloud-rest-api-auth/blob/master/README.adoc</user>
-        <admin>https://github.com/pegusapps/owncloud-rest-api-auth/blob/master/README.adoc</admin>
-        <developer>https://github.com/pegusapps/owncloud-rest-api-auth/blob/master/README.adoc</developer>
-    </documentation>
-
-    <author>KNX</author>
-    <website>https://github.com/pegusapps/owncloud-rest-api-auth</website>
-    <respository>https://github.com/pegusapps/owncloud-rest-api-auth</respository>
-
-    <dependencies>
-        <owncloud min-version="9" max-version="10"/>
-    </dependencies>
-
+  <id>rest_auth_app</id>
+  <name>REST Authentication App</name>
+  <description>KNX REST Authentication</description>
+  <licence>AGPL 3</licence>
+  <author>Your Name</author>
+  <version>0.0.1</version>
+  <namespace>rest_auth_app</namespace>
+  <category>tool</category>
+  <types>
+    <theme/>
+  </types>
+  <dependencies>
+    <owncloud min-version="10" max-version="10"/>
+  </dependencies>
+  <settings>
+    <admin>OCA\rest_auth_app\Controller\SettingsController</admin>
+  </settings>
 </info>

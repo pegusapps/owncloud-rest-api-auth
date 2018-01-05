@@ -12,6 +12,7 @@ services:
           - "8080:80"
       volumes:
           - .:/var/www/html/apps/rest_auth_app
+          - ./extlib:/var/www/html/lib
 
   mysql:
       image: mysql:latest
