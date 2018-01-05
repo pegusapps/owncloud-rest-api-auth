@@ -10,5 +10,10 @@ $application->registerRoutes($this, [
             'url'  => '/',
             'verb' => 'POST'
         ],
+        [
+            'name' => 'settings#index',
+            'url'  => '/',
+            'verb' => 'GET'
+        ],
     ]
 ]);

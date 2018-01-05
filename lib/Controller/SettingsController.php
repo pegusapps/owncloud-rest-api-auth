@@ -74,6 +74,13 @@ class SettingsController extends Controller implements ISettings
     {
         return 'authentication';
     }
+    /**
+     * @NoCSRFRequired
+     * @return TemplateResponse
+     */
+    public function index(){
+        return $this->displayPanel();
+    }
 
     public function getPanel()
     {
