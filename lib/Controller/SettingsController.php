@@ -8,6 +8,7 @@ use OCP\IGroupManager;
 use OCP\Settings\ISettings;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
+use OCP\Template;
 
 class SettingsController extends Controller implements ISettings
 {
@@ -61,8 +62,7 @@ class SettingsController extends Controller implements ISettings
             }
         }
 
-        return $this->displayPanel();
-
+        return $templateResponse = new TemplateResponse($this->appName, 'redirectToSettings', [], '');
     }
 
     public function getPriority()
@@ -79,7 +79,7 @@ class SettingsController extends Controller implements ISettings
      * @return TemplateResponse
      */
     public function index(){
-        return $this->displayPanel();
+        return $templateResponse = new TemplateResponse($this->appName, 'redirectToSettings', [], '');
     }
 
     public function getPanel()
