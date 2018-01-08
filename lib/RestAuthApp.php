@@ -147,6 +147,7 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
     {
         // Need to find the owncloud "internal" user backend first
 
+
         $dbBackend = null;
 
         $backends = $this->userManager->getBackends();
@@ -174,6 +175,7 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
     private function updateGroupsOfUser($uid)
     {
         // Find out in what groups the user needs to be added
+
 
         try {
             $user = $this->userManager->get($uid);

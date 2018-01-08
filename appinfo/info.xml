@@ -10,6 +10,7 @@
   <category>tool</category>
   <types>
     <theme/>
+    <authentication/>
   </types>
   <dependencies>
     <owncloud min-version="10" max-version="10"/>

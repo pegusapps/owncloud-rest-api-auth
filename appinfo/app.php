@@ -13,6 +13,9 @@
         // The route that will be shown on startup
         'href' => $urlGenerator->linkToRoute('rest_auth_app.settings.index'),
 
+        // The icon that will be shown in the navigation, located in img/
+        'icon' => $urlGenerator->imagePath('rest_auth_app', 'knx.svg'),
+
         // The application's title, used in the navigation & the settings page of your app
         'name' => \OC::$server->getL10N('rest_auth_app')->t('KNX REST Authentication'),
     ];
