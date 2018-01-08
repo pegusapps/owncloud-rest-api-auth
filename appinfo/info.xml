@@ -2,9 +2,9 @@
 <info>
   <id>rest_auth_app</id>
   <name>REST Authentication App</name>
-  <description>KNX REST Authentication</description>
+  <description>REST Authentication App</description>
   <licence>AGPL 3</licence>
-  <author>KNX</author>
+  <author>PegusApps</author>
   <version>0.0.4</version>
   <namespace>rest_auth_app</namespace>
   <category>tool</category>

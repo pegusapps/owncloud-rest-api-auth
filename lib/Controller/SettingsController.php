@@ -22,8 +22,8 @@ class SettingsController extends Controller implements ISettings
     /** @var IRequest */
     protected $request;
 
-    const OC_USER_BACKEND_REST_AUTH_API_URL = 'http://api.test.knx.org/';
-    const OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY = 'Peek6Iech2hoo5qua7quaimez9eeMoh9IUY';
+    const OC_USER_BACKEND_REST_AUTH_API_URL = '';
+    const OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY = '';
 
     const REST_AUTH_API_URL_LABEL = 'rest_auth_api_url';
     const REST_AUTH_API_ACCESS_KEY_LABEL = 'rest_auth_api_access_key';
