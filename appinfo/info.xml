@@ -4,8 +4,8 @@
   <name>REST Authentication App</name>
   <description>KNX REST Authentication</description>
   <licence>AGPL 3</licence>
-  <author>Your Name</author>
-  <version>0.0.1</version>
+  <author>KNX</author>
+  <version>0.0.4</version>
   <namespace>rest_auth_app</namespace>
   <category>tool</category>
   <types>
