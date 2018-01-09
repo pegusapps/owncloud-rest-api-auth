@@ -3,21 +3,42 @@
 namespace OCA\rest_auth_app;
 
 use GuzzleHttp\Client as GuzzleClient;
+use OCP\IConfig;
+use OCP\IGroupManager;
+use OCP\IUserManager;
 
 class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
 {
 
     private $client;
+    /** @var  IUserManager */
     private $userManager;
+    /**
+     * @var IGroupManager
+     */
     private $groupManager;
 
-    public function __construct($userManager, $groupManager)
+    /** @var IConfig */
+    private $config;
+
+    /** @var string */
+    protected $appName;
+
+    const OC_USER_BACKEND_REST_AUTH_API_URL = '';
+    const OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY = '';
+
+    const REST_AUTH_API_URL_LABEL = 'rest_auth_api_url';
+    const REST_AUTH_API_ACCESS_KEY_LABEL = 'rest_auth_api_access_key';
+
+    public function __construct(string $appName, IUserManager $userManager, IGroupManager $groupManager, IConfig $config)
     {
+        $this->appName = $appName;
         $this->userManager = $userManager;
         $this->groupManager = $groupManager;
+        $this->config = $config;
 
         $this->client = new GuzzleClient([
-            'base_url' => \OC::$server->getAppConfig()->getValue('rest_auth_app', 'rest_auth_api_url', OC_USER_BACKEND_REST_AUTH_API_URL)
+            'base_url' => $this->config->getAppValue($this->appName, self::REST_AUTH_API_URL_LABEL, self::OC_USER_BACKEND_REST_AUTH_API_URL)
         ]);
     }
 
@@ -49,8 +70,8 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
         $response = $this->client->get('call/customer', [
             'query' => [
                 'call'       => 'authenticate',
-                'api_key'    => \OC::$server->getAppConfig()->getValue('rest_auth_app', 'rest_auth_api_access_key',
-                    OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY),
+                'api_key'    => $this->config->getAppValue($this->appName, self::REST_AUTH_API_ACCESS_KEY_LABEL,
+                    self::OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY),
                 'api_output' => 'json',
                 'username'   => $uid,
                 'password'   => $password
@@ -58,7 +79,7 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
         ]);
         \OCP\Util::writeLog('OC_rest_auth_app', "Response from REST API: " . $response->getBody(), \OCP\Util::DEBUG);
 
-        if (((string)$response->getBody()) === "true") {
+        if (((string)$response->getBody()) === 'true') {
 
             $this->createOrUpdateUserInOwnCloud($uid, $password);
 
@@ -92,8 +113,8 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
             $response = $this->client->get('call/customer', [
                 'query' => [
                     'call'       => 'getInfo',
-                    'api_key'    => \OC::$server->getAppConfig()->getValue('rest_auth_app', 'rest_auth_api_access_key',
-                        OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY),
+                    'api_key'    => $this->config->getAppValue($this->appName, self::REST_AUTH_API_ACCESS_KEY_LABEL,
+                        self::OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY),
                     'api_output' => 'json',
                     'username'   => $uid
                 ]
@@ -126,6 +147,7 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
     {
         // Need to find the owncloud "internal" user backend first
 
+
         $dbBackend = null;
 
         $backends = $this->userManager->getBackends();
@@ -154,6 +176,7 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
     {
         // Find out in what groups the user needs to be added
 
+
         try {
             $user = $this->userManager->get($uid);
             $oldGroupsOfUser = $this->groupManager->getUserGroups($user);
@@ -163,8 +186,8 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
             $response = $this->client->get('call/customer', [
                 'query' => [
                     'call'       => 'getInfo',
-                    'api_key'    => \OC::$server->getAppConfig()->getValue('rest_auth_app', 'rest_auth_api_access_key',
-                        OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY),
+                    'api_key'    => $this->config->getAppValue($this->appName, self::REST_AUTH_API_ACCESS_KEY_LABEL,
+                        self::OC_USER_BACKEND_REST_AUTH_API_ACCESS_KEY),
                     'api_output' => 'json',
                     'username'   => $uid
                 ]
@@ -177,7 +200,7 @@ class RestAuthApp extends \OC_User_Backend implements \OCP\UserInterface
                 \OCP\Util::writeLog('OC_rest_auth_app', "Tag Id: " . $tagId, \OCP\Util::DEBUG);
 
                 $variableId = 'tag-' . $tagId;
-                $owncloudGroupName = \OCP\Config::getAppValue('rest_auth_app', $variableId, "");
+                $owncloudGroupName = $this->config->getAppValue($this->appName, $variableId, '');
                 if (!empty($owncloudGroupName)) {
 
                     $group = $this->groupManager->get($owncloudGroupName);
