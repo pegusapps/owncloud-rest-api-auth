@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <database>
 
- <name>*dbname*</name>
- <create>true</create>
- <overwrite>false</overwrite>
+    <name>*dbname*</name>
+    <create>true</create>
+    <overwrite>false</overwrite>
 
- <charset>utf8</charset>
+    <charset>utf8</charset>
 
- <table>
+    <table>
 
-  <name>*dbprefix*users_rest_api_auth</name>
+        <name>*dbprefix*users_rest_api_auth</name>
 
-  <declaration>
+        <declaration>
 
-   <field>
-    <name>uid</name>
-    <type>text</type>
-    <default></default>
-    <notnull>true</notnull>
-    <length>64</length>
-   </field>
+            <field>
+                <name>uid</name>
+                <type>text</type>
+                <default></default>
+                <notnull>true</notnull>
+                <length>64</length>
+            </field>
 
-   <field>
-    <name>displayname</name>
-    <type>text</type>
-    <default></default>
-    <notnull>false</notnull>
-    <length>64</length>
-   </field>
+            <field>
+                <name>displayname</name>
+                <type>text</type>
+                <default></default>
+                <notnull>false</notnull>
+                <length>64</length>
+            </field>
 
-   <index>
-    <name>users_unique</name>
-    <primary>true</primary>
-    <unique>true</unique>
-    <field>
-     <name>uid</name>
-     <sorting>ascending</sorting>
-    </field>
-   </index>
+            <index>
+                <name>users_unique</name>
+                <primary>true</primary>
+                <unique>true</unique>
+                <field>
+                    <name>uid</name>
+                    <sorting>ascending</sorting>
+                </field>
+            </index>
 
-  </declaration>
+        </declaration>
 
- </table>
+    </table>
 
 </database>

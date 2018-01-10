@@ -1,15 +1,21 @@
 <?xml version="1.0"?>
 <info>
-	<id>rest_auth_app</id>
-	<name>REST Authentication App</name>
-	<description></description>
-	<version>0.0.3</version>
-	<licence></licence>
-	<author></author>
-	<types>
-		<authentication/>
-	</types>
-	<dependencies>
-		<owncloud min-version="9" max-version="9"/>
-	</dependencies>
+  <id>rest_auth_app</id>
+  <name>REST Authentication App</name>
+  <description>REST Authentication App</description>
+  <licence>AGPL 3</licence>
+  <author>PegusApps</author>
+  <version>0.0.4</version>
+  <namespace>rest_auth_app</namespace>
+  <category>tool</category>
+  <types>
+    <theme/>
+    <authentication/>
+  </types>
+  <dependencies>
+    <owncloud min-version="10" max-version="10"/>
+  </dependencies>
+  <settings>
+    <admin>OCA\rest_auth_app\Controller\SettingsController</admin>
+  </settings>
 </info>
