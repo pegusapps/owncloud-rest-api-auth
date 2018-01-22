@@ -9,7 +9,6 @@
   <namespace>rest_auth_app</namespace>
   <category>tool</category>
   <types>
-    <theme/>
     <authentication/>
   </types>
   <dependencies>
